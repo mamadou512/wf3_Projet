@@ -1,0 +1,20 @@
+{{ form_start(form) }}
+
+<div class="row">
+	<div class="col-lg-7">
+		{{ form_row(form.title) }}
+	</div>
+	<div class="col-lg-5">
+		{{ form_row(form.author) }}
+	</div>
+</div>
+
+{{ form_row(form.content) }}
+
+{{ form_rest(form) }}
+
+<div class="text-end">
+	<button type="submit" class="" btn btn-primary>{{ action == 'create' ? "Créer" : "Modifier" }}
+		l'article</button>
+</div>
+{{ form_end(form) }}

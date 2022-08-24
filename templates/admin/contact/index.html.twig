@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title "Demandes de Contact" %}
+
+{% block body %}
+	<h1>Demandes de contact</h1>
+
+	<form method="GET">
+		<div class="input-group mb-3 mt-5">
+			<input type="text"  name="button" value="{{ app.request.query.get('q') }}" class="form-control" placeholder="Recherche..." aria-label="Recipient's username" aria-describedby="button-addon2">
+			<button class="btn btn-outline-primary" type="submit" id="button-addon2">Rechercher</button>
+		</div>
+	</form>
+
+	<table class="table table-striped mt-5">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>Date</th>
+				<th>Email</th>
+				<th>Aperçu</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for contact in contacts %}
+				<tr>
+					<td>{{ contact.id }}</td>
+					<td>{{ contact.createdAt|date('d/m/y')}}</td>
+					<td>{{ contact.email }}</td>
+					<td>{{ contact.message|ellipsis(20) }}</td>
+					<td>
+						<a href="{{ path('admin_contact_delete', {id: contact.id}) }}" class="btn btn-danger me-3">Supprimer</a>
+						<a href="{{ path('admin_contact_view', {id: contact.id}) }}" class="btn btn-sm btn-primary">Voir</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

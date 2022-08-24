@@ -1,0 +1,4 @@
+framework:
+    mailer:
+        envelope:
+            recipients: ['%email_website%']

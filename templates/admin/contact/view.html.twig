@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block title "Demande de contact" %}
+
+{% block body %}
+    <a href="{{ path('admin_contact_index') }}"><--Retour</a>
+	<h1>Demande de contact #
+		{{ contact.id }}</h1>
+
+	<div class="mt-5">
+		<div>ID :
+			<b>{{ contact.id }}</b>
+		</div>
+		<div>Date :
+			<b>{{ contact.createdAt|date('d/m/Y \\à H\\hi') }}</b>
+		</div>
+		<div>Email :
+			<b>{{ contact.email }}</b>
+		</div>
+        <div>
+            Message : <br>
+            {{contact.message|nl2br}}
+        </div>
+	</div>
+{% endblock %}

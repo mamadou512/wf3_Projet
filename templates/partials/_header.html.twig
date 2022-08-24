@@ -1,0 +1,62 @@
+<header class="bg-light">
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#"><img  class="bi" width="50" height="40"  src="assets/images/logo.png" alt="logo"></a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ path('home')}}">Accueil</a></li>
+						<li class="nav-item"><a class="nav-link" href="{{ path('about')}}">A Propos</a></li>
+						<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							Articles
+						</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<li><a class="dropdown-item" href="#">Article 1</a></li>
+								<li><a class="dropdown-item" href="#">Article 2</a></li>
+								<li><a class="dropdown-item" href="#">Article 3</a></li>
+								<li><a class="dropdown-item" href="{{ path('blog_index') }}">Tous les articles</a></li>	
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('contact')}}">Contact</a>
+						</li>
+						{% if app.user %}
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								{{ is_granted('ROLADMIN') ? "Admin" : "Mon espace" }}
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+								{% if is_granted('ROLE_ADMIN') %}
+								<li><a class="dropdown-item" href="{{ path('admin_contact_index')}}">Demande de contact</a></li>
+								<li><a class="dropdown-item" href="{{ path('admin_blog_index')}}">Gestion du blog</a></li>
+								{% else %}
+									{# liens pour les pages ROLE_USER #}
+								{% endif %}	
+								<li><hr  class="dropdown-divider"</li>
+								<li><a class="dropdown-item" href="{{ path('admin_redirect') }}">Accéder à mon espace</a></li>
+							</ul>
+						</li>
+						{% endif %}	
+					</ul>
+					<ul class="navbar-nav mb-2 mb-lg-0">
+						{% if app.user %}
+						    <li class="nav-item">
+							    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+						    </li>
+						{% else %}
+						    <li class="nav-item">
+							    <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+						    </li>
+						    <li class="nav-item">		
+							    <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+						    </li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+</header>
