@@ -21,8 +21,7 @@
 		{% endblock %}
 	</head>
 	<body>
-		{#  {% include 'partials/_header.html.twig' %} #}
-
+		
 		{{ render(controller(
             'App\\Controller\\BaseController::_header'
          ))}}
@@ -40,7 +39,7 @@
 
 			{% block body %}{% endblock %}
 		</div>
-
 		{% include 'partials/_footer.html.twig' %}
+
 	</body>
 </html>
